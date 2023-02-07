@@ -1,0 +1,23 @@
+#!groovy
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent any
+    options {
+        timestamps()
+    }
+    stages {
+        stage("First step") {
+            steps {
+                //git 'https://github.com/Shork47/LabAdm'
+                sh 'pip3 install -r requirements.txt'
+            }
+        }
+        stage("Second step") {
+            steps {
+                sh 'python3 -m pytest -v --junitxml=report.xml'
+				junit '*.xml'
+            }
+        }
+    }
+}
