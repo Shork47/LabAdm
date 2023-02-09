@@ -2,7 +2,9 @@ import datetime
 from modelsLab1 import *
 import os
 
+
 def createBD():
+    isfile = False
     isfile = os.path.isfile('lab1.db')
     if (isfile == True):
         os.remove('lab1.db')
@@ -15,6 +17,7 @@ def createBD():
     return isfile
 
 def fillBD():
+    isfile = False
     isfile = os.path.isfile('lab1.db')
     if (isfile == True):
         with db:
@@ -51,6 +54,7 @@ def fillBD():
     return CheckForTable
 
 def showClientsBD():
+    isfile = False
     isfile = os.path.isfile('lab1.db')
     if (isfile == True):
         print(f"{'id' : <10}{'Name' : <15}{'City' : <15}{'Address' : <10}")
@@ -61,6 +65,7 @@ def showClientsBD():
     return Client.select().count()
 
 def showOrdersBD():
+    isfile = False
     isfile = os.path.isfile('lab1.db')
     if (isfile == True):
         print(f"{'id' : <10}{'Client_id' : <14}{'Date' : <16}{'Amount' : <10}{'Description' : <10}")
@@ -76,13 +81,13 @@ if __name__ == "__main__":
     print("Выберите желаемое действие\ninit\nfill\nshow [tablename]")
     task = input('Ваш выбор:')
     if (task == 'init'):
-        pep = createBD()
+        createBD()
          
     if (task == 'fill'):
-        pep1 = fillBD()
+        fillBD()
         
     if (task == 'show Clients'):
-        pep2 = showClientsBD()
+        showClientsBD()
 
     if (task == 'show Orders'):
-        pep3 = showOrdersBD()
+        showOrdersBD()
