@@ -7,12 +7,17 @@ sentry_sdk.init(
     # We recommend adjusting this value in production.
     traces_sample_rate=1.0
 )
+# Отправка без ошибки
 with sentry_sdk.configure_scope() as scope:
+    #Создание tag
     scope.set_tag('tag_lab','working')
-    division_by_zero = 1 / 1
-    scope.set_tag('tag_for_lab',division_by_zero)
+    a = 5
+    b = 7
+    c = a + b
+    #Создание tag
+    scope.set_tag('tag_for_lab',c)
     try:
-        print(division_by_zero)
+        print(c/0)
     except Exception:
         sentry_sdk.capture_message("Exception")
 
